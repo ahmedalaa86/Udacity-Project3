@@ -128,9 +128,9 @@ jobs:
             npm install --save-dev webpack@5.74.0
             npm audit --audit-level=critical
       - run:
-        name: Alert When Fail
-        command: echo "Hello Fail"
-        when: on_fail
+          name: Alert When Fail
+          command: echo "Hello Fail"
+          when: on_fail
 
   deploy-infrastructure:
     docker:
