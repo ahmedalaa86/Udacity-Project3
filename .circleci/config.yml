@@ -167,6 +167,41 @@ jobs:
             - project/.circleci/ansible/inventory.txt
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+  configure-infrastructure:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: [ "01:68:e3:ac:9b:32:ac:1d:b3:56:98:ec:55:bd:4e:ad" ]
+      - run:
+          name: Install dependencies
+          command: |
+            pip3 install --no-cache-dir awscli
+            apk add --update ansible
+            apk add --update gzip
+            apk add --update tar
+      - run:
+          name: Configure server
+          command: |
+            ansible-playbook -i ansible\inventory.txt ansible\configure-server.yml
+      # Here's where you will add some code to rollback on failure
+  run-migrations:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run:
+          name: Run migrations
+          command: |
+            # Your code here
+            exit 1
+      - run:
+          name: Send migration results to memstash
+          command: |
+            # Your code here
+            exit 1
+      # Here's where you will add some code to rollback on failure
 
 workflows:
   default:
@@ -186,3 +221,5 @@ workflows:
           filters:
             branches:
               only: [master]
+      - configure-infrastructure:
+          requires: [ deploy-infrastructure ]
