@@ -224,8 +224,7 @@ jobs:
           command: |
             pip3 install --no-cache-dir awscli
             apk add --update ansible
-            apk add --update node
-            apk add --update npm
+            apk add --update nodejs
       - run:
           name: Get backend url
           command: |
@@ -259,8 +258,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-            apk add --update node
-            apk add --update npm
+            apk add --update nodejs
             apk add --update gzip
             apk add --update tar
       - run:
