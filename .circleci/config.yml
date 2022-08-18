@@ -205,6 +205,7 @@ jobs:
             npm audit fix --force
             # Run and save the migration output
             npm run migrations --inspect > migrations_dump.txt
+            cat /home/circleci/.npm/_logs/2022-08-18T20_53_34_508Z-debug.log
           no_output_timeout: 30m
       - run:
           name: Send migration results to memstash
