@@ -273,7 +273,7 @@ jobs:
             cd .circleci/ansible/roles/deploy/files
             echo "Display files list -------"
             ls
-            cd .circleci/ansible
+            cd ../../..
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
