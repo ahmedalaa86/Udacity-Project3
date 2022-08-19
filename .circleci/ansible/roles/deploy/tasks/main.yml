@@ -9,13 +9,13 @@
     tar -xvzf /home/ubuntu/artifact.tar.gz
 - name: Install Node
   shell: |
-    cd /home/ubuntu/backend
+    cd /home/ubuntu
     npm install
 - name: Build Node
   shell: |
-    cd /home/ubuntu/backend
+    cd /home/ubuntu
     npm run build
 - name: Start PM2
   shell: |
-    cd /home/ubuntu/backend
+    cd /home/ubuntu
     pm2 start npm --name backend -- start
