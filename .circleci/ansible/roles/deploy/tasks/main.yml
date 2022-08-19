@@ -6,7 +6,7 @@
 
 - name: Unzip backend files
   shell: |
-    tar -czvf /home/ubuntu/artifact.tar.gz
+    tar -xvzf /home/ubuntu/artifact.tar.gz
 - name: Install Node
   shell: |
     cd /home/ubuntu/backend
